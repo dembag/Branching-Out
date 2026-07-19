@@ -2,6 +2,11 @@ import json
 
 
 def filter_users_by_name(name):
+    """
+    Filters users database by name.
+    Prints the users that match the parameter.
+    :param name: str
+    """
     with open("users.json", "r") as file:
         users = json.load(file)
 
@@ -12,6 +17,11 @@ def filter_users_by_name(name):
 
 
 def filter_users_by_age(age):
+    """
+    Filters users by age.
+    Prints the users with the given age.
+    :param age: int
+    """
     with open("users.json", "r") as file:
         users = json.load(file)
 
@@ -22,6 +32,11 @@ def filter_users_by_age(age):
 
 
 def filter_users_by_email(email):
+    """
+    Filters users by email address.
+    Prints the users that match the given email address
+    :param email: str
+    """
     with open("users.json", "r") as file:
         users = json.load(file)
 
@@ -31,7 +46,7 @@ def filter_users_by_email(email):
         print(user)
 
 if __name__ == "__main__":
-    filter_option = input("What would you like to filter by? (Currently, only 'name' and 'age' are supported): ").strip().lower()
+    filter_option = input("What would you like to filter by? ('name', 'age', 'email'): ").strip().lower()
 
     if filter_option == "name":
         name_to_search = input("Enter a name to filter users: ").strip()
