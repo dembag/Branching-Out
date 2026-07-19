@@ -12,8 +12,7 @@ def filter_users_by_name(name):
 
     filtered_users = [user for user in users if user["name"].lower() == name.lower()]
 
-    for user in filtered_users:
-        print(user)
+    print_filtered_users(filtered_users)
 
 
 def filter_users_by_age(age):
@@ -27,8 +26,7 @@ def filter_users_by_age(age):
 
     filtered_users = [user for user in users if user["age"] == int(age)]
 
-    for user in filtered_users:
-        print(user)
+    print_filtered_users(filtered_users)
 
 
 def filter_users_by_email(email):
@@ -42,8 +40,17 @@ def filter_users_by_email(email):
 
     filtered_users = [user for user in users if user["email"].lower() == email.lower()]
 
+    print_filtered_users(filtered_users)
+
+
+def print_filtered_users(filtered_users):
+    """
+    Displays each entry from the filtered_users list.
+    :param filtered_users: list
+    """
     for user in filtered_users:
-        print(user)
+        print(f"User ID: {user['id']}, Name: {user['name']}, Age: {user['age']}, Email: {user['email']}")
+
 
 if __name__ == "__main__":
     filter_option = input("What would you like to filter by? ('name', 'age', 'email'): ").strip().lower()
@@ -52,8 +59,17 @@ if __name__ == "__main__":
         name_to_search = input("Enter a name to filter users: ").strip()
         filter_users_by_name(name_to_search)
     elif filter_option == "age":
-        age_to_search = input("Enter the age to filter users: ").strip()
+        while True:
+            try:
+                age_to_search = int(input("Enter the age to filter users: ").strip())
+                if age_to_search < 1:
+                    print("Invalid age.")
+                break
+
+            except ValueError:
+                print("Please enter the age as numbers.")
         filter_users_by_age(age_to_search)
+
     elif filter_option == "email":
         email_to_search = input("Enter an email to filter users: ").strip()
         filter_users_by_email(email_to_search)
